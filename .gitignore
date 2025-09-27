@@ -1,0 +1,11 @@
+# Secret 관련 파일 제외 (실제 값이 들어있는 Secret 파일은 제외)
+secret-template.yaml
+
+*.env
+
+.idea/
+.vscode/
+
+*.log
+
+.DS_Store
