@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommend-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: recommend-service
+  template:
+    metadata:
+      labels:
+        app: recommend-service
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: recommend-service
+        image: financedoc.kr.ncr.ntruss.com/recommend-service:latest
+        ports:
+        - containerPort: 8080

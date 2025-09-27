@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edu-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: edu-service
+  template:
+    metadata:
+      labels:
+        app: edu-service
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: edu-service
+        image: financedoc.kr.ncr.ntruss.com/edu-service:latest
+        ports:
+        - containerPort: 8080
+      
