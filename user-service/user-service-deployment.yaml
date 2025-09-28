@@ -19,4 +19,13 @@ spec:
         image: financedoc.kr.ncr.ntruss.com/user-service:latest
         ports:
         - containerPort: 8080
-      
+        env:
+        - name: USER_DATASOURCE_URL
+          value: jdbc:postgresql://user-db.db.svc.cluster.local:5432/userdb
+        - name: USER_DATASOURCE_USERNAME
+          value: user
+        - name: USER_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: user-db-secret
+              key: USER_DATASOURCE_PASSWORD
