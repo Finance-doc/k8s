@@ -19,3 +19,13 @@ spec:
         image: financedoc.kr.ncr.ntruss.com/recommend-service:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: RECOMMEND_DATASOURCE_URL
+          value: jdbc:postgresql://recommend-db.db.svc.cluster.local:5432/recommenddb
+        - name: RECOMMEND_DATASOURCE_USERNAME
+          value: user
+        - name: RECOMMEND_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: recommend-db-secret
+              key: RECOMMEND_DATASOURCE_PASSWORD
