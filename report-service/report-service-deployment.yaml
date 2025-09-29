@@ -19,4 +19,14 @@ spec:
         image: financedoc.kr.ncr.ntruss.com/report-service:latest
         ports:
         - containerPort: 8080
+      env:
+        - name: REPORT_DATASOURCE_URL
+          value: jdbc:postgresql://report-db.db.svc.cluster.local:5432/reportdb
+        - name: REPORT_DATASOURCE_USERNAME
+          value: user
+        - name: REPORT_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: report-db-secret
+              key: REPORT_DATASOURCE_PASSWORD
       
